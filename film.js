@@ -103,4 +103,146 @@ const filmy = [
 			'Na zámek v podhůří Krkonoš přijíždí jeho nový majitel Štěpán se svojí snoubenkou, krásnou komtesou Blankou, a mladším bratrem Adamem. Cestou kočár nešťastně srazí kolemjdoucí dívku, Adam jí pomůže a ona se do něj zamiluje. Na zámku Adam objeví starou vlašskou knihu, která by měla obsahovat cestu k pokladům. Tajemné značky vlašské knihy však nedokáže vyluštit ani národopisec Jiráček, který v kraji sbírá pověsti a nevychází z údivu nad tím, že zdejší lidé stále věří v Krakonoše. Na zámku se objeví záhadný cizinec a nabídne Štěpánovi, že jej k pokladu za určitých podmínek dovede. Výprava do hor může začít. Naplní se Liduščina láska k Adamovi? Jakou záhadu skrývá starý obraz na zámku Hůrka a co strašlivého se v horách kdysi odehrálo? A kdo je vlastně Krakonoš a jaké je jeho největší tajemství? (csfd.cz, Česká televize)',
 		premiera: '2022-12-24',
 	},
+	{
+		id: 'bob-marley',
+		nazev: 'Bob Marley: One Love',
+		plakat: {
+			url: 'https://filmtoro.cz/img/film/7RXyg2jBgItk0wG5eNbYHb23qXt.jpg',
+			sirka: 420,
+			vyska: 592,
+		},
+		ochutnavka: 'Dokument o Bobovi Marleyovi.',
+		popis:
+			'Dokument, který mapuje život slavného reggae zpěváka, kytaristy, skladatele a rastafariána Boba Marleyho. Páteří snímku jsou rozhovory s ním a s osobami, které ho znaly a byly mu blízké, například s jeho ženou Ritou, s vydavatelem Chrisem Blackwellem a dalšími osobnostmi jamajské a britské hudební scény. Mimo jiné snímek diváka částečně seznamuje i s Jamajkou, s její historií a sociokulturním kontextem.',
+		premiera: '2024-01-10',
+	},
+	{
+		id: 'nocni-koupani',
+		nazev: 'Noční koupání',
+		plakat: {
+			url: 'https://image.pmgstatic.com/cache/resized/w420/files/images/film/posters/168/163/168163431_6jxqlh.jpg',
+			sirka: 420,
+			vyska: 592,
+		},
+		ochutnavka: 'Strasidelny horror.',
+		popis:
+			'Hrdiny hororu Noční koupání jsou Wallerovi, rodina, jež se právě nastěhovala do domu s velkým bazénem na klidném předměstí. Právě možnost pravidelně rehabilitovat ve vodě byla hlavním důvodem, proč si tohle místo vybrali jako svůj domov. Táta Ray je bývalý úspěšný hráč baseballu, jemuž kariéru přeťalo nepříjemné degenerativní onemocnění. Ray se nevzdává a věří, že pravidelné cvičení může vést až k zázračnému vyléčení. Manželka Eve a dvě dospívající děti si koupání na zahradě taky užívají dosyta. Protože jsme ale v hororu, idylka netrvá dlouho. Dům, do něhož se nastěhovali, má děsivou minulost a Wallerovi se mají stát její součástí. Vše, čeho se bojíte, se skrývá pod hladinou a čeká na pravou chvíli. Čeká na člověka, který dostane uprostřed noci báječný nápad si jít zaplavat. Naposled v životě.',
+		premiera: '2023-12-09',
+	},
 ]
+
+const detail = document.querySelector("#detail-filmu")
+
+detail.innerHTML = ""
+
+filmy.forEach((key, index) => {
+
+	if (filmy[index].id === location.hash.slice(1)) {
+		let currentFilm = index
+		detail.innerHTML = `
+		<div class="card mb-3" id="detail-filmu">
+				<div class="row g-0">
+					<div class="col-md-5">
+						<img
+							src=${filmy[index].plakat.url}
+							alt="plakát"
+							class="img-fluid rounded-start"
+							width=${filmy[index].plakat.sirka}
+							height=${filmy[index].plakat.vyska}
+						/>
+					</div>
+					<div class="col-md-7">
+						<div class="card-body">
+							<h5 class="card-title">${filmy[index].nazev}</h5>
+							<p class="card-text">${filmy[index].popis}</p>
+							<p class="card-text">
+							<small class="text-muted" id="premiera"
+							></small>
+							</p>
+							<h6>Hodnocení</h6>
+							<div class="stars">
+								<button
+									class="far fa-star button-star"
+									data-mdb-toggle="tooltip"
+									title="Nic moc"
+								>
+									1
+								</button>
+								<button
+									class="far fa-star button-star"
+									data-mdb-toggle="tooltip"
+									title="Ucházející"
+								>
+									2
+								</button>
+								<button
+									class="far fa-star button-star"
+									data-mdb-toggle="tooltip"
+									title="Dobrý"
+								>
+									3
+								</button>
+								<button
+									class="far fa-star button-star"
+									data-mdb-toggle="tooltip"
+									title="Skvělý"
+								>
+									4
+								</button>
+								<button
+									class="far fa-star button-star"
+									data-mdb-toggle="tooltip"
+									title="Úžasný"
+								>
+									5
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+		</div>`
+	}
+})
+
+
+const premiera = document.querySelector("#premiera")
+const day = document.querySelector("#day")
+
+filmy.forEach((key, index) => {
+
+	if (filmy[index].id === location.hash.slice(1)) {
+		if(dayjs(filmy[index].premiera).isBefore(dayjs()) && dayjs(filmy[index].premiera).format('D.M.YYYY') != dayjs().format('D.M.YYYY') ) {
+			premiera.innerHTML+=`Premiéra <strong>${dayjs(filmy[index].premiera).format('D.M.YYYY')}</strong>, což 
+			bylo před ${dayjs().diff(dayjs(filmy[index].premiera), 'days')}dní.`
+		} else if (dayjs().isBefore(dayjs(filmy[index].premiera))) {
+			premiera.innerHTML+=`Premiéra <strong>${dayjs(filmy[index].premiera).format('D.M.YYYY')}</strong>, což 
+			je za ${dayjs(filmy[index].premiera).diff(dayjs(), 'days')}dní.`
+		} else {
+			premiera.innerHTML+=`Premiéra <strong>${dayjs(filmy[index].premiera).format('D.M.YYYY')}</strong>, což 
+			je dneska`
+		}
+
+	}
+
+})
+
+// tady pridat den / dni rozliseni
+
+/*
+const day = document.querySelector("#day")
+
+		if (dayjs().diff(dayjs(filmy[index].premiera), 'days') === 1) {	
+			day.innerHTML+= "dnem"
+		} else {
+			day.innerHTML+= "dní."
+		}*/
+
+var star = document.querySelectorAll(".fa-star")
+
+star.forEach(element => {
+		element.classList.add("fas")
+	});
+
+
+
+

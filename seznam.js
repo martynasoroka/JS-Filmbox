@@ -103,4 +103,63 @@ const filmy = [
 			'Na zámek v podhůří Krkonoš přijíždí jeho nový majitel Štěpán se svojí snoubenkou, krásnou komtesou Blankou, a mladším bratrem Adamem. Cestou kočár nešťastně srazí kolemjdoucí dívku, Adam jí pomůže a ona se do něj zamiluje. Na zámku Adam objeví starou vlašskou knihu, která by měla obsahovat cestu k pokladům. Tajemné značky vlašské knihy však nedokáže vyluštit ani národopisec Jiráček, který v kraji sbírá pověsti a nevychází z údivu nad tím, že zdejší lidé stále věří v Krakonoše. Na zámku se objeví záhadný cizinec a nabídne Štěpánovi, že jej k pokladu za určitých podmínek dovede. Výprava do hor může začít. Naplní se Liduščina láska k Adamovi? Jakou záhadu skrývá starý obraz na zámku Hůrka a co strašlivého se v horách kdysi odehrálo? A kdo je vlastně Krakonoš a jaké je jeho největší tajemství? (csfd.cz, Česká televize)',
 		premiera: '2022-12-24',
 	},
+	{
+		id: 'bob-marley',
+		nazev: 'Bob Marley: One Love',
+		plakat: {
+			url: 'https://filmtoro.cz/img/film/7RXyg2jBgItk0wG5eNbYHb23qXt.jpg',
+			sirka: 420,
+			vyska: 592,
+		},
+		ochutnavka: 'Dokument o Bobovi Marleyovi.',
+		popis:
+			'Dokument, který mapuje život slavného reggae zpěváka, kytaristy, skladatele a rastafariána Boba Marleyho. Páteří snímku jsou rozhovory s ním a s osobami, které ho znaly a byly mu blízké, například s jeho ženou Ritou, s vydavatelem Chrisem Blackwellem a dalšími osobnostmi jamajské a britské hudební scény. Mimo jiné snímek diváka částečně seznamuje i s Jamajkou, s její historií a sociokulturním kontextem.',
+		premiera: '2024-01-10',
+	},
+	{
+		id: 'nocni-koupani',
+		nazev: 'Noční koupání',
+		plakat: {
+			url: 'https://image.pmgstatic.com/cache/resized/w420/files/images/film/posters/168/163/168163431_6jxqlh.jpg',
+			sirka: 420,
+			vyska: 592,
+		},
+		ochutnavka: 'Strasidelny horror.',
+		popis:
+			'Hrdiny hororu Noční koupání jsou Wallerovi, rodina, jež se právě nastěhovala do domu s velkým bazénem na klidném předměstí. Právě možnost pravidelně rehabilitovat ve vodě byla hlavním důvodem, proč si tohle místo vybrali jako svůj domov. Táta Ray je bývalý úspěšný hráč baseballu, jemuž kariéru přeťalo nepříjemné degenerativní onemocnění. Ray se nevzdává a věří, že pravidelné cvičení může vést až k zázračnému vyléčení. Manželka Eve a dvě dospívající děti si koupání na zahradě taky užívají dosyta. Protože jsme ale v hororu, idylka netrvá dlouho. Dům, do něhož se nastěhovali, má děsivou minulost a Wallerovi se mají stát její součástí. Vše, čeho se bojíte, se skrývá pod hladinou a čeká na pravou chvíli. Čeká na člověka, který dostane uprostřed noci báječný nápad si jít zaplavat. Naposled v životě.',
+		premiera: '2024-01-04',
+	},
+
 ]
+
+const seznam = document.querySelector("#seznam-filmu")
+
+seznam.innerHTML = ""
+
+
+filmy.forEach((key, index) => {
+	seznam.innerHTML += `
+	<div class="col">
+	<div class="card">
+		<img
+		src=${filmy[index].plakat.url}
+		width=${filmy[index].plakat.sirka}
+		height=${filmy[index].plakat.vyska}
+		class="card-img-top"
+		alt="plakát"
+		/>
+		<div class="card-body">
+		<h5 class="card-title">${filmy[index].nazev}</h5>
+		<p class="card-text">${filmy[index].ochutnavka}</p>
+		<a href="film.html#${filmy[index].id}" class="btn btn-primary">Přehrát</a>
+		</div>
+	</div>
+	</div>
+	
+
+	`})
+
+
+
+
+
