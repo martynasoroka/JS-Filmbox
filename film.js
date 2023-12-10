@@ -228,25 +228,43 @@ filmy.forEach((key, index) => {
 
 var stars = document.querySelectorAll(".fa-star")
 
-let pocet
+let pocet = -1
+
+let ohodnoceno = false
+
 
 const ohodnotit = (pocet) => {
 	for (let i = 0; i<=pocet; i++) {
 		stars[i].classList.replace("far", "fas")
 	}
-}		
+}	
 
 stars.forEach((star, index) => {
-	star.addEventListener("click", () => {
-		let pocet = Number(stars[index].textContent)
-		ohodnotit(pocet-1)
+	star.addEventListener("click", (e) => {
+		pocet = Number(e.target.textContent)
+		const savedCount = pocet - 1
+		ohodnotit(savedCount)
+		ohodnoceno = true
 	})
 })
 
-stars.forEach((star, index) => {
-	star.addEventListener("mouseenter", () => {
-		let pocet = Number(stars[index].textContent)
-		ohodnotit(pocet-1)
+stars.forEach((star) => {
+	star.addEventListener("mouseenter", (e) => {
+		if (ohodnoceno===false) {
+			pocet = Number(e.target.textContent)
+			ohodnotit(pocet-1)
+		}
 	})
 })
 
+
+const allStars = document.querySelector(".stars")
+
+
+stars.forEach((star) => {
+	allStars.addEventListener("mouseleave", () => {
+		if (ohodnoceno===false) {
+			star.classList.replace("fas", "far")
+		}
+	})
+})
