@@ -127,7 +127,7 @@ const filmy = [
 		ochutnavka: 'Strasidelny horror.',
 		popis:
 			'Hrdiny hororu Noční koupání jsou Wallerovi, rodina, jež se právě nastěhovala do domu s velkým bazénem na klidném předměstí. Právě možnost pravidelně rehabilitovat ve vodě byla hlavním důvodem, proč si tohle místo vybrali jako svůj domov. Táta Ray je bývalý úspěšný hráč baseballu, jemuž kariéru přeťalo nepříjemné degenerativní onemocnění. Ray se nevzdává a věří, že pravidelné cvičení může vést až k zázračnému vyléčení. Manželka Eve a dvě dospívající děti si koupání na zahradě taky užívají dosyta. Protože jsme ale v hororu, idylka netrvá dlouho. Dům, do něhož se nastěhovali, má děsivou minulost a Wallerovi se mají stát její součástí. Vše, čeho se bojíte, se skrývá pod hladinou a čeká na pravou chvíli. Čeká na člověka, který dostane uprostřed noci báječný nápad si jít zaplavat. Naposled v životě.',
-		premiera: '2023-12-09',
+		premiera: '2023-12-10',
 	},
 ]
 
@@ -226,23 +226,27 @@ filmy.forEach((key, index) => {
 
 })
 
-// tady pridat den / dni rozliseni
+var stars = document.querySelectorAll(".fa-star")
 
-/*
-const day = document.querySelector("#day")
+let pocet
 
-		if (dayjs().diff(dayjs(filmy[index].premiera), 'days') === 1) {	
-			day.innerHTML+= "dnem"
-		} else {
-			day.innerHTML+= "dní."
-		}*/
+const ohodnotit = (pocet) => {
+	for (let i = 0; i<=pocet; i++) {
+		stars[i].classList.replace("far", "fas")
+	}
+}		
 
-var star = document.querySelectorAll(".fa-star")
+stars.forEach((star, index) => {
+	star.addEventListener("click", () => {
+		let pocet = Number(stars[index].textContent)
+		ohodnotit(pocet-1)
+	})
+})
 
-star.forEach(element => {
-		element.classList.add("fas")
-	});
-
-
-
+stars.forEach((star, index) => {
+	star.addEventListener("mouseenter", () => {
+		let pocet = Number(stars[index].textContent)
+		ohodnotit(pocet-1)
+	})
+})
 

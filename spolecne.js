@@ -1,11 +1,23 @@
 
 const menu = document.querySelector("#menu-tlacitko")
+const icon = document.querySelector(".fa-bars")
+const menuNav = document.querySelector("#menu-polozky")
 
-const showMenu = () => {
-    const menuP = document.querySelector("#menu-polozky")
-    menuP.classList.toggle("show")
+
+let showMenu = false;
+
+function toggleMenu() {
+    if (!showMenu) {
+        icon.classList.replace("fa-bars","fa-xmark");
+        menuNav.classList.add("show");
+
+        showMenu = true;
+    } else {
+        icon.classList.replace("fa-xmark", "fa-bars");
+        menuNav.classList.remove("show");
+
+        showMenu = false;
+    }
 }
-
-menu.addEventListener("click", showMenu)
-
-//tady pridat by hamburger menu melo "x"
+    
+menu.addEventListener("click", toggleMenu)
