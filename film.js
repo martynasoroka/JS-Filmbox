@@ -213,10 +213,10 @@ filmy.forEach((key, index) => {
 	if (filmy[index].id === location.hash.slice(1)) {
 		if(dayjs(filmy[index].premiera).isBefore(dayjs()) && dayjs(filmy[index].premiera).format('D.M.YYYY') != dayjs().format('D.M.YYYY') ) {
 			premiera.innerHTML+=`Premiéra <strong>${dayjs(filmy[index].premiera).format('D.M.YYYY')}</strong>, což 
-			bylo před ${dayjs().diff(dayjs(filmy[index].premiera), 'days')}dní.`
+			bylo před ${dayjs().diff(dayjs(filmy[index].premiera), 'days')} dní.`
 		} else if (dayjs().isBefore(dayjs(filmy[index].premiera))) {
 			premiera.innerHTML+=`Premiéra <strong>${dayjs(filmy[index].premiera).format('D.M.YYYY')}</strong>, což 
-			je za ${dayjs(filmy[index].premiera).diff(dayjs(), 'days')}dní.`
+			je za ${dayjs(filmy[index].premiera).diff(dayjs(), 'days')} dní.`
 		} else {
 			premiera.innerHTML+=`Premiéra <strong>${dayjs(filmy[index].premiera).format('D.M.YYYY')}</strong>, což 
 			je dneska`
