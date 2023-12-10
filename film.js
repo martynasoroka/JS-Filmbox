@@ -230,9 +230,6 @@ var stars = document.querySelectorAll(".fa-star")
 
 let pocet = -1
 
-let ohodnoceno = false
-
-
 const ohodnotit = (pocet) => {
 	for (let i = 0; i<=pocet; i++) {
 		stars[i].classList.replace("far", "fas")
@@ -242,29 +239,21 @@ const ohodnotit = (pocet) => {
 stars.forEach((star, index) => {
 	star.addEventListener("click", (e) => {
 		pocet = Number(e.target.textContent)
-		const savedCount = pocet - 1
-		ohodnotit(savedCount)
-		ohodnoceno = true
+		ohodnotit(pocet-1)
 	})
 })
 
 stars.forEach((star) => {
 	star.addEventListener("mouseenter", (e) => {
-		if (ohodnoceno===false) {
-			pocet = Number(e.target.textContent)
-			ohodnotit(pocet-1)
-		}
+			ohodnotit(Number(e.target.textContent)-1)
 	})
 })
 
-
 const allStars = document.querySelector(".stars")
-
 
 stars.forEach((star) => {
 	allStars.addEventListener("mouseleave", () => {
-		if (ohodnoceno===false) {
 			star.classList.replace("fas", "far")
-		}
+			ohodnotit(pocet-1)
 	})
 })
